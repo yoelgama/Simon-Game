@@ -89,7 +89,7 @@ class Simon {
         }
         else {
             $('h1').text("Game Over, Press Any Key to Restart")
-            this.level = -1
+            setTimeout(() => this.level = -1, 1000)
             this.playAudio("wrong")
         }
     }
