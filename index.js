@@ -109,3 +109,11 @@ addEventListener('keydown', (event) => {
         alterarPontuaçãoMax(simon.level)
     }
 })
+
+addEventListener('click', (event) => {
+    if (simon.level == -1) {
+        simon.reset()
+        simon.add_next()
+        alterarPontuaçãoMax(simon.level)
+    }
+})
