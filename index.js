@@ -5,24 +5,6 @@ function animate(cor, animation, ms = 300) {
     }, ms)
 }
 
-
-function alterarPontuaçãoMax(level) {
-    console.log("editando localStorage")
-    let levelMax = localStorage.getItem("levelMax")
-
-    levelMax = levelMax == null ? 0 : parseInt(levelMax)
-
-    if (level > levelMax) {
-        console.log("alterando level 2")
-        $('p').html('Highest level <em class="emphasis">has beaten</em>: ' + level)
-        localStorage.setItem("levelMax", level)
-    }
-    else {
-        $('p').text("Highest level: " + levelMax)
-    }
-}
-
-
 class Simon {
     sequenciaReal = []
     tocado
@@ -41,7 +23,7 @@ class Simon {
 
 
     reset() {
-        alterarPontuaçãoMax(this.level)
+        this.alterarPontuaçãoMax(this.level)
         console.log("-----------")
         this.sequenciaReal = []
         this.tocado = undefined
@@ -69,7 +51,7 @@ class Simon {
         }, 1000)
 
         this.sequenciaReal.forEach((ele) => ele[1] = false)
-        alterarPontuaçãoMax(this.level)
+        this.alterarPontuaçãoMax(this.level)
     }
 
 
@@ -93,6 +75,22 @@ class Simon {
             this.playAudio("wrong")
         }
     }
+
+    alterarPontuaçãoMax(level) {
+        console.log("editando localStorage")
+        let levelMax = localStorage.getItem("levelMax")
+
+        levelMax = levelMax == null ? 0 : parseInt(levelMax)
+
+        if (level > levelMax) {
+            console.log("alterando level 2")
+            $('p').html('Highest level <em class="emphasis">has beaten</em>: ' + level)
+            localStorage.setItem("levelMax", level)
+        }
+        else {
+            $('p').text("Highest level: " + levelMax)
+        }
+    }
 }
 
 
@@ -100,12 +98,20 @@ $('#darkmode').on('click', () => {
     document.body.classList.toggle('dark-mode')
 })
 
-alterarPontuaçãoMax(0)
-let simon = new Simon()
-$('h1').on('click', (event) => {
-    if (simon.level == -1) {
-        simon.reset()
-        simon.add_next()
-        alterarPontuaçãoMax(simon.level)
-    }
-})
+
+
+function main() {
+
+    let simon = new Simon()
+    simon.alterarPontuaçãoMax(0)
+    $('h1').on('click', (event) => {
+        if (simon.level == -1) {
+            simon.reset()
+            simon.add_next()
+            simon.alterarPontuaçãoMax(simon.level)
+        }
+    })
+}
+
+
+main()
