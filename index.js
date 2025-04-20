@@ -88,8 +88,8 @@ class Simon {
                 this.add_next()
         }
         else {
-            $('h1').text("Game Over, Press Any Key to Restart")
-            setTimeout(() => this.level = -1, 1000)
+            $('h1').text("Game Over, click here to Restart")
+            this.level = -1
             this.playAudio("wrong")
         }
     }
@@ -102,15 +102,7 @@ $('#darkmode').on('click', () => {
 
 alterarPontuaçãoMax(0)
 let simon = new Simon()
-addEventListener('keydown', (event) => {
-    if (simon.level == -1) {
-        simon.reset()
-        simon.add_next()
-        alterarPontuaçãoMax(simon.level)
-    }
-})
-
-addEventListener('click', (event) => {
+$('h1').on('click', (event) => {
     if (simon.level == -1) {
         simon.reset()
         simon.add_next()
