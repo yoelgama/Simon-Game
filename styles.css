@@ -17,6 +17,7 @@
 
 @layer base {
     body {
+        touch-action: manipulation;
         font-family: "Press Start 2P", cursive;
         color: var(--primary);
         background-color: var(--background-color);
