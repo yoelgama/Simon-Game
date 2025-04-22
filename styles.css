@@ -17,10 +17,15 @@
 
 @layer base {
     body {
+        outline: none;
         touch-action: manipulation;
         font-family: "Press Start 2P", cursive;
         color: var(--primary);
         background-color: var(--background-color);
+
+        & * {
+            -webkit-tap-highlight-color: transparent;
+        }
     }
 }
 
